@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizResults"
+    android:background="#AFDAFC">
+    
+    <TextView
+        android:id="@+id/text_resultatov"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:text="Результаты:"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_resultatov"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/result_test1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Номер вопроса - балл"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startNewTestBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Перейти к другим тестам"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="25dp"
+        android:background="@drawable/round_back_white_stroke2_10"/>
+
+</RelativeLayout>
