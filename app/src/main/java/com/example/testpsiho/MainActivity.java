@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String selectedTopic = "";
+    public String selectedTopic = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                selectedTopic = "test_psiho1";
+                selectedTopic = "Опросник враждебности";
                 test_psiho1.setBackgroundResource(R.drawable.round_back_white_stroke10);
 
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 if (selectedTopic.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Выберите викторину", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                    Intent intent = new Intent(MainActivity.this, FormaRegistr.class);
                     intent.putExtra("selectedTopic", selectedTopic);
                     startActivity(intent);
                     finish();
