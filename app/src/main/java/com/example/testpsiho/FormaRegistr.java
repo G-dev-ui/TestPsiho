@@ -3,7 +3,7 @@ package com.example.testpsiho;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,24 +34,21 @@ public class FormaRegistr extends AppCompatActivity {
         Intent intent = getIntent();
         selectedTopic = intent.getStringExtra("selectedTopic");
 
-        otpravitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (editText1.getText().toString().isEmpty() || editText2.getText().toString().isEmpty()|| editText3.getText().toString().isEmpty() || editText4.getText().toString().isEmpty() || editText5.getText().toString().isEmpty()){
-                    Toast.makeText(FormaRegistr.this, "Введите данные", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(FormaRegistr.this, QuizActivity.class);
-                    intent.putExtra("editText1", editText1.getText().toString());
-                    intent.putExtra("editText2", editText2.getText().toString());
-                    intent.putExtra("editText3", editText3.getText().toString());
-                    intent.putExtra("editText4", editText4.getText().toString());
-                    intent.putExtra("editText5", editText5.getText().toString());
-                    intent.putExtra("selectedTopic", selectedTopic);
-                    startActivity(intent);
-                    finish();
-                }
-
+        otpravitBtn.setOnClickListener(v -> {
+            if (editText1.getText().toString().isEmpty() || editText2.getText().toString().isEmpty()|| editText3.getText().toString().isEmpty() || editText4.getText().toString().isEmpty() || editText5.getText().toString().isEmpty()){
+                Toast.makeText(FormaRegistr.this, "Введите данные", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent1 = new Intent(FormaRegistr.this, QuizActivity.class);
+                intent1.putExtra("editText1", editText1.getText().toString());
+                intent1.putExtra("editText2", editText2.getText().toString());
+                intent1.putExtra("editText3", editText3.getText().toString());
+                intent1.putExtra("editText4", editText4.getText().toString());
+                intent1.putExtra("editText5", editText5.getText().toString());
+                intent1.putExtra("selectedTopic", selectedTopic);
+                startActivity(intent1);
+                finish();
             }
+
         });
 
 
