@@ -3,7 +3,9 @@ package com.example.testpsiho;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +31,6 @@ public class QuizActivity extends AppCompatActivity {
     private int currentQuestionPosition = 0;
     private String selectedOptionByUser = "";
 
-    public QuizActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,9 @@ public class QuizActivity extends AppCompatActivity {
         Btn_Da.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Btn_Da.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+                Btn_Net.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+
 
 
                 Btn_Da.setBackgroundResource(R.drawable.round_back_white_stroke10);
@@ -86,6 +89,8 @@ public class QuizActivity extends AppCompatActivity {
         Btn_Net.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Btn_Da.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+                Btn_Net.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
 
 
                 Btn_Net.setBackgroundResource(R.drawable.round_back_white_stroke10);
@@ -144,18 +149,23 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             Map<String, Integer> results = evaluateTest();
 
+
+
             Intent intent = new Intent(QuizActivity.this, QuizResults.class);
             Bundle bundle = new Bundle();
             for (Map.Entry<String, Integer> entry : results.entrySet()) {
                 bundle.putInt(entry.getKey(), entry.getValue());
             }
             intent.putExtra("results", bundle);
+
+
+
+            intent.putExtra("results", bundle);
             intent.putExtra("editText1", getIntent().getStringExtra("editText1"));
             intent.putExtra("editText2", getIntent().getStringExtra("editText2"));
             intent.putExtra("editText3", getIntent().getStringExtra("editText3"));
             intent.putExtra("editText4", getIntent().getStringExtra("editText4"));
             intent.putExtra("editText5", getIntent().getStringExtra("editText5"));
-            startActivity(intent);
             startActivity(intent);
             finish();
         }
@@ -186,6 +196,8 @@ public class QuizActivity extends AppCompatActivity {
         }
         return results;
     }
+
+
 
 
 }

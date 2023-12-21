@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+
+import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
-import android.view.View;
+
 import android.widget.TextView;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +23,10 @@ public class QuizResults extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_results);
 
         final AppCompatButton startNewTest = findViewById(R.id.startNewTestBtn);
-        final TextView result_correct = findViewById(R.id.result_correct);
         final TextView data_info = findViewById(R.id.data_info);
+
+        SQLiteDatabase db = this.openOrCreateDatabase("QuizResultsDB", MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS results (editText1 VARCHAR, editText2 VARCHAR, editText3 VARCHAR, editText4 VARCHAR, editText5 VARCHAR, testResults VARCHAR);");
 
         Bundle bundle = getIntent().getBundleExtra("results");
         Map<String, Integer> results = new HashMap<>();
@@ -31,11 +35,8 @@ public class QuizResults extends AppCompatActivity {
         }
         StringBuilder resultsText = new StringBuilder();
         for (Map.Entry<String, Integer> entry : results.entrySet()) {
-            resultsText.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+            resultsText.append(entry.getKey()).append(": ").append(entry.getValue()).append(", ");
         }
-        result_correct.setText(resultsText.toString());
-
-
 
         String editText1 = getIntent().getStringExtra("editText1");
         String editText2 = getIntent().getStringExtra("editText2");
@@ -43,23 +44,24 @@ public class QuizResults extends AppCompatActivity {
         String editText4 = getIntent().getStringExtra("editText4");
         String editText5 = getIntent().getStringExtra("editText5");
 
+        String query = "INSERT INTO results (editText1, editText2, editText3, editText4, editText5, testResults) VALUES ('" + editText1 + "', '" + editText2 + "', '" + editText3 + "', '" + editText4 + "', '" + editText5 + "', '" + resultsText + "');";
+        db.execSQL(query);
 
         String data = "Имя: " + editText1 + "\n" +
                 "Фамилия: " + editText2 + "\n" +
                 "Отчество: " + editText3 + "\n" +
                 "Дата рождения: " + editText4 + "\n" +
-                "Класс: " + editText5;
-
+                "Класс: " + editText5 + "\n" +
+                "Результаты теста: " + resultsText;
 
         data_info.setText(data);
-        startNewTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(QuizResults.this,MainActivity.class));
-                finish();
-            }
+
+        startNewTest.setOnClickListener(v -> {
+            startActivity(new Intent(QuizResults.this,MainActivity.class));
+            finish();
         });
-    } @Override
+    }
+    @Override
     public void onBackPressed(){
         startActivity(new Intent(QuizResults.this,MainActivity.class));
         finish();

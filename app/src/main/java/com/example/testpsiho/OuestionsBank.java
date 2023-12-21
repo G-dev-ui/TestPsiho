@@ -10,7 +10,7 @@ public class OuestionsBank {
         final List<QuestionsList> questionsList = new ArrayList<>();
         final QuestionsList question1 = new QuestionsList("Временами я не могу справиться с желанием причинить вред другим", "Да", "Нет", "Да", "");
         final QuestionsList question2 = new QuestionsList("Иногда сплетничаю о людях, которых не люблю ", "Да", "Нет", "Да", "");
-        final QuestionsList question3 = new QuestionsList("Иногда сплетничаю о людях, которых не люблю ", "Да", "Нет", "Да", "");
+        final QuestionsList question3 = new QuestionsList("Я легко раздражаюсь, но быстро успокаиваюсь", "Да", "Нет", "Да", "");
         final QuestionsList question4 = new QuestionsList("Если меня не попросят по-хорошему, я не выполню", "Да", "Нет", "Да", "");
         final QuestionsList question5 = new QuestionsList("Я не всегда получаю то, что мне положено", "Да", "Нет", "Да", "");
         final QuestionsList question6 = new QuestionsList("Я не знаю, что люди говорят обо мне за моей спиной", "Да", "Нет", "Да", "");
